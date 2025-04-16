@@ -50,7 +50,7 @@ function App() {
           </div>
 
           <div className="w-full flex items-center justify-center m-5 p-2 md:p-5 bg-white/50 rounded-full shadow-sm border border-rose-400 space-x-1 md:space-x-5">
-            <input type="text" placeholder="Ask our expert model anything.." className="border border-rose-400 w-full p-5 rounded-full"></input>
+            <textarea placeholder="Ask our expert model anything.." className="border border-rose-400 w-full p-5 rounded-full resize-none caret-rose-400 focus:outline-rose-300" rows={2}></textarea>
             <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200">Send</button>
           </div>
         </div>
