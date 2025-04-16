@@ -13,7 +13,7 @@ function App() {
           <img src={logo} alt="logo" className="h-10 object-contain" />
         </div>
 
-        <p>Copyright ©2025 Aditya Banka. All rights reserved.</p>
+        <p>Copyright ©2025 <a href="https://adityabanka.com/">Aditya Banka</a>. All rights reserved.</p>
       </div>
 
 
@@ -22,8 +22,9 @@ function App() {
 
       {/* Body */}
       <div>
-        <div>
-          <p className="text-7xl font-zilla-slab-bold">Let's <span className="text-rose-400">Heal</span> our world <span className="text-rose-400">Together</span></p>
+        <div className="pt-40 px-80 space-y-5">
+          <p className="text-4xl font-zilla-slab-bold">Let's <span className="text-rose-400 text-5xl">Heal</span> our world together</p> 
+          <p className="font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals.  </p> 
         </div>
 
       </div>
