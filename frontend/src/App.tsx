@@ -13,7 +13,10 @@ function App() {
           <img src={logo} alt="logo" className="h-10 object-contain" />
         </div>
 
-        <p>Copyright ©2025 <a href="https://adityabanka.com/">Aditya Banka</a>. All rights reserved.</p>
+        <div className="text-sm flex flex-col items-end">
+          <p>Copyright ©2025 <a href="https://adityabanka.com/" target="_blank" rel="noreferrer">Aditya Banka</a></p>
+          <p>All rights reserved</p>
+        </div>
       </div>
 
 
@@ -23,8 +26,8 @@ function App() {
       {/* Body */}
       <div>
         <div className="pt-40 px-80 space-y-5">
-          <p className="text-4xl font-zilla-slab-bold">Let's <span className="text-rose-400 text-5xl">Heal</span> our world together</p> 
-          <p className="font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals.  </p> 
+          <p className="text-4xl font-zilla-slab-bold">Let's <span className="text-rose-400 text-5xl">Heal</span> our world together</p>
+          <p className="font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals.</p>
         </div>
 
       </div>
