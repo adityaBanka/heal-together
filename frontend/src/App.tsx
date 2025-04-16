@@ -1,4 +1,11 @@
 import logo from "./assets/logoipsum-custom-logo.svg";
+
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+
 function App() {
 
   return (
@@ -14,7 +21,18 @@ function App() {
         </div>
 
         <div className="text-sm flex flex-col items-end font-zilla-slab-light-italic">
-          <p>Copyright ©2025 <a href="https://adityabanka.com/" target="_blank" rel="noreferrer">Aditya Banka</a></p>
+          <p>Copyright ©2025 <HoverCard>
+              <HoverCardTrigger asChild>
+                <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="font-zilla-slab-italic hover:underline">Aditya Banka</a>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <div className="flex flex-col">
+                  <p className="text-sm">Aditya Banka is a software engineer and entrepreneur with a passion for building innovative solutions that make a difference in people's lives.</p>
+                  <p className="text-sm">He is the founder of Aditya Banka Technologies, a company that specializes in developing cutting-edge software applications.</p>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </p>
           <p>All rights reserved</p>
         </div>
       </div>
