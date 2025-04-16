@@ -27,8 +27,7 @@ function App() {
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="flex flex-col">
-                <p className="text-sm">Aditya Banka is a software engineer and entrepreneur with a passion for building innovative solutions that make a difference in people's lives.</p>
-                <p className="text-sm">He is the founder of Aditya Banka Technologies, a company that specializes in developing cutting-edge software applications.</p>
+                <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="text-sm">Hey, this is a joke, I made this for fun and too better my design skills. I am looking for a job at the moment, hope you like it.</a>
               </div>
             </HoverCardContent>
           </HoverCard>
@@ -44,14 +43,15 @@ function App() {
       {/* Body */}
       <div>
         <div className="w-fit pt-40 mx-[10%] md:mx-[20%] flex flex-col items-center justify-center">
-          
-          <div className="flex flex-col items-start">
+
+          <div className="flex flex-col items-start px-[5%]">
             <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together</p>
             <p className="font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals.</p>
           </div>
 
-          <div className="w-full flex items-center justify-center my-5 bg-white/50 rounded-full shadow-lg p-10">
-            <input type="text" placeholder="Hello World" className="bg-white w-full mx-10"></input>
+          <div className="w-full flex items-center justify-center m-5 p-5 bg-white/50 rounded-full shadow-sm border border-rose-400 space-x-5">
+            <input type="text" placeholder="Ask our experts anything" className="border border-rose-400 w-full p-5 rounded-full"></input>
+            <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200">Send</button>
           </div>
         </div>
 
