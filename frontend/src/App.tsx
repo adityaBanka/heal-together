@@ -1,4 +1,4 @@
-import logo from "./assets/logoipsum-custom-logo.svg";
+import logo from "./assets/PageLogo.svg";
 
 import {
   HoverCard,
@@ -44,9 +44,9 @@ function App() {
       <div>
         <div className="w-fit pt-10 md:pt-40 mx-[10%] md:mx-[20%] flex flex-col items-center justify-center">
 
-          <div className="flex flex-col items-start px-[5%]">
-            <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together</p>
-            <p className="font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals.</p>
+          <div className="flex flex-col items-start">
+            <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together.</p>
+            <p className="font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Through cutting-edge natural language processing and evidence-based psychological frameworks, our model delivers personalized, compassionate, and clinically sound mental health guidance. Designed in collaboration with licensed therapists and psychologists, our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>
           </div>
 
           <div className="w-full flex items-center justify-center m-5 p-2 md:p-5 bg-white/50 rounded-full shadow-sm border border-rose-400 space-x-1 md:space-x-5">
