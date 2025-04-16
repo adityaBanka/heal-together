@@ -9,9 +9,9 @@ import {
 function App() {
 
   return (
-    <div className="bg-rose-50/50 h-screen">
+    <div>
 
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      <div className="absolute inset-0 -z-10 h-full w-full bg-rose-50/50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
       {/* Header */}
       <div className="w-full px-6 py-4 bg-rose-800/12 flex items-center justify-between ">
