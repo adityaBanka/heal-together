@@ -43,7 +43,7 @@ function App() {
 
       {/* Body */}
       <div>
-        <div className="w-fit pt-40 mx-[20%] flex flex-col items-center justify-center">
+        <div className="w-fit pt-40 mx-[10%] md:mx-[20%] flex flex-col items-center justify-center">
           
           <div className="flex flex-col items-start">
             <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together</p>
