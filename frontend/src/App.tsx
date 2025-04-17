@@ -97,7 +97,7 @@ function App() {
           <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200 active:scale-95 hover:scale-105">Send</button>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center w-full space-x-10">
+        <div className="flex flex-col md:flex-row items-center justify-center w-full md:space-x-10">
           <div
             className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${allCondition ? "outline-green-400" : "outline-rose-400"
               }`}
