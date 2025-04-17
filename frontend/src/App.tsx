@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import logo from "./assets/PageLogo.svg";
 
@@ -20,14 +20,13 @@ import { Separator } from "@/components/ui/separator"
 import { Switch } from "@/components/ui/switch"
 
 import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
 
 
 
 function App() {
 
-  const safeList = ["Yeah man this site don't do this.", "Aww you thought I was gonna say something fun?", "Ehh eww"]
-  const funList = ["fun", "fun", "fun"]
+  // const safeList = ["Yeah man this site don't do this.", "Aww you thought I was gonna say something fun?", "Ehh eww"]
+  // const funList = ["fun", "fun", "fun"]
   const thinkingList = [
     "Thinking...",
     "That's a great question!",
