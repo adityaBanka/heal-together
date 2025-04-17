@@ -17,14 +17,22 @@ import {
 
 import { Separator } from "@/components/ui/separator"
 
+import { Switch } from "@/components/ui/switch"
+
 
 
 function App() {
 
   const [word, setWord] = useState("Heal")
 
+  const [safeMode, setSafeMode] = useState(false)
+
   const onClick = () => {
     setWord("Lol")
+  }
+
+  const onToggleSafeMode = (checked: boolean) => {
+    setSafeMode(checked)
   }
 
   return (
@@ -61,7 +69,7 @@ function App() {
       <div className="w-fit pt-10 md:pt-30 mx-[10%] md:mx-[20%] flex flex-col items-center justify-center">
 
         <div className="flex flex-col items-start">
-          <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">{word}</span> our minds together.</p>
+          <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">{safeMode ? "true" : "false"}</span> our minds together.</p>
           <p className="text-xl font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Through cutting-edge natural language processing and evidence-based psychological frameworks, our model delivers personalized, compassionate, and clinically sound mental health guidance. Designed in collaboration with licensed therapists and psychologists, our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>
         </div>
 
@@ -69,6 +77,54 @@ function App() {
           <textarea placeholder="Ask our expert model anything.." className="border border-rose-400 w-full p-5 rounded-full resize-none caret-rose-400 focus:outline-rose-300" rows={2}></textarea>
           <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200" onClick={onClick}>Send</button>
         </div>
+
+        <div className="flex md:flex-row items-center justify-center w-full space-x-10">
+          <div
+            className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${safeMode ? "outline-green-400" : "outline-rose-400"
+              }`}
+          >
+            <label className="text-sm font-zilla-slab-italic mx-1">Terms and Conditions</label>
+            <Switch
+              checked={safeMode}
+              onCheckedChange={onToggleSafeMode}
+              className="data-[state=unchecked]:bg-rose-400 data-[state=checked]:bg-green-400 mx-1"
+            />
+          </div>
+          <div
+            className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${safeMode ? "outline-green-400" : "outline-rose-400"
+              }`}
+          >
+            <label className="text-sm font-zilla-slab-italic mx-1">Privacy Policy</label>
+            <Switch
+              checked={safeMode}
+              onCheckedChange={onToggleSafeMode}
+              className="data-[state=unchecked]:bg-rose-400 data-[state=checked]:bg-green-400 mx-1"
+            />
+          </div>
+          <div
+            className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${safeMode ? "outline-green-400" : "outline-rose-400"
+              }`}
+          >
+            <label className="text-sm font-zilla-slab-italic mx-1">End User License</label>
+            <Switch
+              checked={safeMode}
+              onCheckedChange={onToggleSafeMode}
+              className="data-[state=unchecked]:bg-rose-400 data-[state=checked]:bg-green-400 mx-1"
+            />
+          </div>
+          <div
+            className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${safeMode ? "outline-green-400" : "outline-rose-400"
+              }`}
+          >
+            <label className="text-sm font-zilla-slab-italic mx-1">Safe mode</label>
+            <Switch
+              checked={safeMode}
+              onCheckedChange={onToggleSafeMode}
+              className="data-[state=unchecked]:bg-rose-400 data-[state=checked]:bg-green-400 mx-1"
+            />
+          </div>
+        </div>
+
 
         <div className="w-full flex flex-col items-start mt-25">
 
