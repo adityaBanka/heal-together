@@ -18,8 +18,6 @@ import {
 import { Separator } from "@/components/ui/separator"
 
 import { Switch } from "@/components/ui/switch"
-import { GalleryHorizontalEndIcon } from "lucide-react";
-
 
 
 function App() {
