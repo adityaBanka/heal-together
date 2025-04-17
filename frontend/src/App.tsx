@@ -152,7 +152,7 @@ function App() {
 
       {/* Footer */}
       <div className="w-full bg-rose-800/12 mt-10 py-5 flex items-center justify-center">
-        <p>Copyright ©2025 Heal Together Inc. All Rights Reserved. Designed and developed by Aditya Banka.</p>
+        <p className="px-5 text-center">Copyright ©2025 Heal Together Inc. All Rights Reserved. Designed and developed by Aditya Banka.</p>
       </div>
 
     </div>
