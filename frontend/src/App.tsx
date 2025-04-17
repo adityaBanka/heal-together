@@ -71,7 +71,7 @@ function App() {
       thinkingList.forEach((item, index) => {
         setTimeout(() => {
           setLoader(item)
-        }, 1000);
+        }, 1000 + index);
       })
     }
     else {
