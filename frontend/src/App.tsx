@@ -69,7 +69,7 @@ function App() {
       <div className="w-fit pt-10 md:pt-30 mx-[10%] md:mx-[20%] flex flex-col items-center justify-center">
 
         <div className="flex flex-col items-start">
-          <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">{safeMode ? "true" : "false"}</span> our minds together.{word}</p>
+          <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">{word}</span> our minds together.{safeMode ? "true" : "false"}</p>
           <p className="text-xl font-zilla-slab-regular">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Through cutting-edge natural language processing and evidence-based psychological frameworks, our model delivers personalized, compassionate, and clinically sound mental health guidance. Designed in collaboration with licensed therapists and psychologists, our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>
         </div>
 
