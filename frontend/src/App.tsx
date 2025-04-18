@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import logo from "./assets/PageLogo.svg";
+import thumbnail from "/thumbnail.svg";
 
 import {
   HoverCard,
@@ -21,6 +22,28 @@ import { Switch } from "@/components/ui/switch"
 
 import { Checkbox } from "@/components/ui/checkbox"
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { JSX } from "react/jsx-runtime";
+
+
+type TextBoxProps = {
+  user: boolean;
+  children: React.ReactNode;
+};
+
+const TextBox: React.FC<TextBoxProps> = ({ user, children }) => {
+  return (
+    <div className={`flex space-x-5 space-y-5 ${user ? "flex-row-reverse space-x-reverse" : ""} `}>
+      <Avatar>
+        {!user ? (
+          <AvatarImage src={thumbnail} alt="User Avatar" />
+        ) : null}
+        <AvatarFallback className="bg-rose-200 text-white">{user ? "U" : "Ai"}</AvatarFallback>
+      </Avatar>
+      <p className="text-xl font-zilla-slab-regular text-justify">{children}</p>
+    </div>
+  );
+};
 
 
 function App() {
@@ -45,7 +68,13 @@ function App() {
 
 
   const [title, setTitle] = useState(<p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together.</p>)
-  const [description, setDescription] = useState(<p className="text-xl font-zilla-slab-regular text-justify">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>)
+  const [description, setDescription] = useState<JSX.Element[]>([])
+
+  useEffect(() => {
+    setDescription([])
+    const firstDescription = <p className="text-xl font-zilla-slab-regular text-justify">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>;
+    setDescription(prev => [...prev, firstDescription]);
+  }, [])
 
   const [terms, setTerms] = useState(false)
   const [privacy, setPrivacy] = useState(false)
@@ -77,6 +106,8 @@ function App() {
         setLoader("Enter your message..")
         return
       }
+      const userDescription = <TextBox user={true}>{message}</TextBox>;
+      setDescription(prev => [...prev, userDescription])
       setMessage("")
       setLoader("Thinking...");
       // Keep track of which thinking message to show
@@ -91,11 +122,13 @@ function App() {
           clearInterval(interval);
           if (safeMode) {
             setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Haha, you <span className="text-rose-400 text-5xl">Really</span> thought this would work.</p>)
-            setDescription(<p className="text-xl font-zilla-slab-regular text-justify">You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</p>)
+            const nextDescription = <TextBox user={false}>You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</TextBox>;
+            setDescription(prev => [...prev, nextDescription])
           }
           else {
             setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Go <span className="text-rose-400 text-5xl">F*ck</span> yourself.</p>)
-            setDescription(<p className="text-xl font-zilla-slab-regular text-justify">You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</p>)
+            const nextDescription = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
+            setDescription(prev => [...prev, nextDescription])
           }
         }
       }, 3000);
@@ -130,7 +163,7 @@ function App() {
         </div>
 
         <div className="text-sm font-zilla-slab-light not-md:hidden">
-          <p>Developed and designed by <HoverCard>
+          <p>Designed and developed by <HoverCard>
             <HoverCardTrigger asChild>
               <span className="font-zilla-slab-italic hover:underline">Aditya Banka</span>
             </HoverCardTrigger>
@@ -350,7 +383,7 @@ function App() {
       <div className="w-full bg-rose-800/12 mt-10 py-5 flex items-center justify-center">
         <p className="px-5 text-center font-zilla-slab-regular">Copyright ©2025 Heal Together Inc. All Rights Reserved. Designed and developed by <HoverCard>
           <HoverCardTrigger asChild>
-            <span className="font-zilla-slab-italic hover:underline">Aditya Banka</span>
+            <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="font-zilla-slab-italic hover:underline">Aditya Banka</a>
           </HoverCardTrigger>
           <HoverCardContent className="w-80">
             <div className="flex flex-col">
