@@ -28,9 +28,10 @@ function App() {
   // const safeList = ["Yeah man this site don't do this.", "Aww you thought I was gonna say something fun?", "Ehh eww"]
   // const funList = ["fun", "fun", "fun"]
   const thinkingList = [
-    "Thinking...",
-    "That's a great question!",
-    "I might need more time to think this through..."
+    "This looks great!",
+    "I might need more time to answer this...",
+    "We are working to ensure you get the best experience.",
+    "Bundling your request...",
   ]
 
 
@@ -42,12 +43,16 @@ function App() {
     console.log(message)
   };
 
+
+  const [title, setTitle] = useState(<p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together.</p>)
+  const [description, setDescription] = useState(<p className="text-xl font-zilla-slab-regular text-justify">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>)
+
   const [terms, setTerms] = useState(false)
   const [privacy, setPrivacy] = useState(false)
   const [eula, setEula] = useState(false)
   const [allCondition, setAllCondition] = useState(false)
 
-  const [safeMode, setSafeMode] = useState(false)
+  const [safeMode, setSafeMode] = useState(true)
 
 
   const onToggleTerms = (checked: boolean) => {
@@ -66,13 +71,34 @@ function App() {
   }
 
   const onSend = () => {
-    if (terms && privacy && eula) {
+
+    if (true) {
+      if (message.length == 0) {
+        setLoader("Enter your message..")
+        return
+      }
       setMessage("")
-      thinkingList.forEach((item, index) => {
-        setTimeout(() => {
-          setLoader(item)
-        }, 1000 + index);
-      })
+      setLoader("Thinking...");
+      // Keep track of which thinking message to show
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < thinkingList.length) {
+          setLoader(thinkingList[index]);
+          index++;
+        } else {
+          // Reset loader text and clear interval when done
+          setLoader("There you go!");
+          clearInterval(interval);
+          if (safeMode) {
+            setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Haha, you <span className="text-rose-400 text-5xl">Really</span> thought this would work.</p>)
+            setDescription(<p className="text-xl font-zilla-slab-regular text-justify">You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</p>)
+          }
+          else {
+            setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Go <span className="text-rose-400 text-5xl">F*ck</span> yourself.</p>)
+            setDescription(<p className="text-xl font-zilla-slab-regular text-justify">You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</p>)
+          }
+        }
+      }, 3000);
     }
     else {
       const temp = message;
@@ -103,10 +129,10 @@ function App() {
           <img src={logo} alt="logo" className="h-10 object-contain" />
         </div>
 
-        <div className="text-sm flex flex-col items-end font-zilla-slab-light not-md:hidden">
+        <div className="text-sm font-zilla-slab-light not-md:hidden">
           <p>Developed and designed by <HoverCard>
             <HoverCardTrigger asChild>
-              <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="font-zilla-slab-italic hover:underline">Aditya Banka</a>
+              <span className="font-zilla-slab-italic hover:underline">Aditya Banka</span>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <div className="flex flex-col">
@@ -126,8 +152,8 @@ function App() {
       <div className="w-fit pt-10 md:pt-30 mx-[10%] lg:mx-[20%] flex flex-col items-center justify-center">
 
         <div className="flex flex-col ">
-          <p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together.</p>
-          <p className="text-xl font-zilla-slab-regular text-justify">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>
+          {title}
+          {description}
         </div>
 
         <div className="w-full flex items-center justify-center md:m-5 mt-10 p-2 md:p-5 bg-white/50 rounded-full shadow-sm border border-rose-400 space-x-1 md:space-x-5">
@@ -324,11 +350,11 @@ function App() {
       <div className="w-full bg-rose-800/12 mt-10 py-5 flex items-center justify-center">
         <p className="px-5 text-center font-zilla-slab-regular">Copyright ©2025 Heal Together Inc. All Rights Reserved. Designed and developed by <HoverCard>
           <HoverCardTrigger asChild>
-            <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="font-zilla-slab-italic hover:underline">Aditya Banka</a>
+            <span className="font-zilla-slab-italic hover:underline">Aditya Banka</span>
           </HoverCardTrigger>
           <HoverCardContent className="w-80">
             <div className="flex flex-col">
-              <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="text-sm">Hey, this is a joke, I made this for fun and too better my design skills. I am looking for a job at the moment, hope you like it.</a>
+              <a href="https://adityabanka.com/" target="_blank" rel="noreferrer" className="text-sm">Hey, this website is a fun project of mine. It is not a real platform, if it wasn't apparent already. I am available for hire. My portfolio: <span className="hover:underline">adityabanka.com</span></a>
             </div>
           </HoverCardContent>
         </HoverCard>.</p>
