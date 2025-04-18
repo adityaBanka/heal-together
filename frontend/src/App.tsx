@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { Analytics } from "@vercel/analytics/react"
+
 import logo from "./assets/PageLogo.svg";
 import thumbnail from "/thumbnail.svg";
 
@@ -48,8 +50,9 @@ const TextBox: React.FC<TextBoxProps> = ({ user, children }) => {
 
 function App() {
 
+  const [disabled, setDisabled] = useState(true)
 
-  const [loader, setLoader] = useState("Ask our expert model anything..")
+  const [loader, setLoader] = useState("Accept the terms and conditions to start.")
   const thinkingList = [
     "This looks great!",
     "I might need more time to answer this...",
@@ -104,8 +107,10 @@ function App() {
     setSafeMode(checked)
   }
 
-  const onSend = () => {
 
+  {/* Send message */}
+  const onSend = () => {
+    setDisabled(true)
     if (terms && privacy && eula) {
       if (message.length == 0) {
         setLoader("Enter your message..")
@@ -136,10 +141,9 @@ function App() {
             const nextDescription = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
             setDescription(prev => [...prev, nextDescription])
           }
+          
         }
       }, Math.floor(Math.random() * 2000) + 3000);
-
-
     }
     else {
       const temp = message;
@@ -151,18 +155,33 @@ function App() {
     }
   }
 
+  {/* Handle the condition states */}
   useEffect(() => {
     if (terms && privacy && eula) {
+      setDisabled(false)
+      setLoader("Ask our expert model anything..")
       setAllCondition(true)
     }
     else {
+      setDisabled(true)
+      setLoader("Accept the terms and conditions to start.")
       setAllCondition(false)
     }
   }, [terms, privacy, eula])
 
+
+  {/* handle enter key to send */}
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); // prevent newline if needed
+      onSend();
+    }
+  };
+
   return (
     <div className="bg-rose-50/50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
-
+      <Analytics />
+      {/* Meta tags */}
       {/* Header */}
       <div className="w-full px-6 py-4 bg-rose-800/12 flex items-center justify-between ">
 
@@ -186,17 +205,18 @@ function App() {
       </div>
 
 
-
-
-
       {/* Body */}
       <div className="w-fit pt-10 md:pt-30 mx-[10%] lg:mx-[20%] flex flex-col items-center justify-center">
 
+
+        {/* Title and description  + chat area*/}
         <div className="flex flex-col ">
           {title}
           {description}
         </div>
 
+
+        {/* input box and send button */}
         <div className="w-full flex items-center justify-center md:m-5 mt-10 p-2 md:p-5 bg-white/50 rounded-full shadow-sm border border-rose-400 space-x-1 md:space-x-5">
           <textarea
             placeholder={loader}
@@ -204,10 +224,14 @@ function App() {
             rows={2}
             value={message}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            disabled={disabled}
           ></textarea>
           <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200 active:scale-95 hover:scale-105" onClick={onSend}>Send</button>
         </div>
 
+
+        {/* Condition buttons */}
         <div className="flex flex-col md:flex-row items-center justify-center w-full md:space-x-10">
           <div
             className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${allCondition ? "outline-green-400" : "outline-rose-400"
@@ -256,6 +280,7 @@ function App() {
         </div>
 
 
+        {/* Frequently asked question section */}
         <div className="w-full flex flex-col items-start mt-25">
 
           <p className="text-4xl font-zilla-slab-regular">Frequently Asked Questions</p>
@@ -294,6 +319,8 @@ function App() {
           </Accordion>
         </div>
 
+
+        {/* Terms and conditions section */}
         <div className="w-full flex flex-col items-start mt-10">
 
           <p className="text-4xl font-zilla-slab-regular">Terms and conditions</p>
@@ -385,8 +412,6 @@ function App() {
       </div>
 
 
-
-
       {/* Footer */}
       <div className="w-full bg-rose-800/12 mt-10 py-5 flex items-center justify-center">
         <p className="px-5 text-center font-zilla-slab-regular">Copyright ©2025 Heal Together Inc. All Rights Reserved. Designed and developed by <HoverCard>
@@ -400,6 +425,7 @@ function App() {
           </HoverCardContent>
         </HoverCard>.</p>
       </div>
+
 
     </div>
   )
