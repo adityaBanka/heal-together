@@ -137,7 +137,7 @@ function App() {
             setDescription(prev => [...prev, nextDescription])
           }
         }
-      }, 3000);
+      }, Math.floor(Math.random() * 2000) + 3000);
 
 
     }
