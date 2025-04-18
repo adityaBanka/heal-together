@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Title from "./components/Title.tsx";
+import Description from "./components/Description.tsx";
 
 import { Analytics } from "@vercel/analytics/react"
 
@@ -43,9 +45,11 @@ const TextBox: React.FC<TextBoxProps> = ({ user, children }) => {
         <AvatarFallback className="bg-rose-200 text-white">{user ? "U" : "Ai"}</AvatarFallback>
       </Avatar>
       <p className="text-xl font-zilla-slab-regular text-justify">{children}</p>
+      <div className="px-5"></div>
     </div>
   );
 };
+
 
 
 function App() {
@@ -73,16 +77,16 @@ function App() {
     setMessage(e.target.value);
     console.log(message)
   };
+  const [numberOfMessages, setNumberOfMessages] = useState(0)
 
 
-  const [title, setTitle] = useState(<p className="text-4xl font-zilla-slab-bold my-5">Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together.</p>)
-  const [description, setDescription] = useState<JSX.Element[]>([])
+  const [title, setTitle] = useState("default")
+  const [description, setDescription] = useState("default")
+  const [chat, setChat] = useState<JSX.Element[]>([])
 
-  useEffect(() => {
-    setDescription([])
-    const firstDescription = <p className="text-xl font-zilla-slab-regular text-justify">We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</p>;
-    setDescription(prev => [...prev, firstDescription]);
-  }, [])
+  // useEffect(() => {
+  //   setChat([])
+  // }, [])
 
   const [terms, setTerms] = useState(false)
   const [privacy, setPrivacy] = useState(false)
@@ -108,7 +112,7 @@ function App() {
   }
 
 
-  {/* Send message */}
+  {/* Send message */ }
   const onSend = () => {
     setDisabled(true)
     if (terms && privacy && eula) {
@@ -116,10 +120,13 @@ function App() {
         setLoader("Enter your message..")
         return
       }
-      const userDescription = <TextBox user={true}>{message}</TextBox>;
-      setDescription(prev => [...prev, userDescription])
+      const userChat = <TextBox user={true}>{message}</TextBox>;
+      setChat(prev => [...prev, userChat])
       setMessage("")
+      setNumberOfMessages(prev => prev + 1)
       setLoader("Thinking...");
+
+
       // Keep track of which thinking message to show
       let index = 0;
       const interval = setInterval(() => {
@@ -132,18 +139,23 @@ function App() {
           clearInterval(interval);
 
           if (safeMode) {
-            setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Haha, you <span className="text-rose-400 text-5xl">Really</span> thought this would work.</p>)
-            const nextDescription = <TextBox user={false}>You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</TextBox>;
-            setDescription(prev => [...prev, nextDescription])
+            if (numberOfMessages == 10) {
+              setTitle("safe")
+              setDescription("safe")
+            }
+            const nextChat = <TextBox user={false}>You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</TextBox>;
+            setChat(prev => [...prev, nextChat])
           }
           else {
-            setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Go <span className="text-rose-400 text-5xl">F*ck</span> yourself.</p>)
-            const nextDescription = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
-            setDescription(prev => [...prev, nextDescription])
+            if (numberOfMessages == 10) {
+              setTitle("fun")
+              setDescription("fun")
+            }
+            const nextChat = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
+            setChat(prev => [...prev, nextChat])
           }
-          
         }
-      }, Math.floor(Math.random() * 2000) + 3000);
+      }, Math.floor(Math.random() * 1) + 1);
     }
     else {
       const temp = message;
@@ -155,7 +167,7 @@ function App() {
     }
   }
 
-  {/* Handle the condition states */}
+  {/* Handle the condition states */ }
   useEffect(() => {
     if (terms && privacy && eula) {
       setDisabled(false)
@@ -170,7 +182,7 @@ function App() {
   }, [terms, privacy, eula])
 
 
-  {/* handle enter key to send */}
+  {/* handle enter key to send */ }
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault(); // prevent newline if needed
@@ -211,8 +223,11 @@ function App() {
 
         {/* Title and description  + chat area*/}
         <div className="flex flex-col ">
-          {title}
-          {description}
+          <Title mode={title}></Title>
+          <Description mode={description}></Description>
+          <div className={`bg-white/50 border border-rose-400 rounded-4xl p-10 mt-5 ${numberOfMessages > 0 ? "" : "hidden"}`}>
+            {chat}
+          </div>
         </div>
 
 
