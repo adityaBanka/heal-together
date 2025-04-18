@@ -125,19 +125,21 @@ function App() {
           // Reset loader text and clear interval when done
           setLoader("There you go!");
           clearInterval(interval);
+
+          if (safeMode) {
+            setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Haha, you <span className="text-rose-400 text-5xl">Really</span> thought this would work.</p>)
+            const nextDescription = <TextBox user={false}>You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</TextBox>;
+            setDescription(prev => [...prev, nextDescription])
+          }
+          else {
+            setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Go <span className="text-rose-400 text-5xl">F*ck</span> yourself.</p>)
+            const nextDescription = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
+            setDescription(prev => [...prev, nextDescription])
+          }
         }
       }, 3000);
 
-      if (safeMode) {
-        setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Haha, you <span className="text-rose-400 text-5xl">Really</span> thought this would work.</p>)
-        const nextDescription = <TextBox user={false}>You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</TextBox>;
-        setDescription(prev => [...prev, nextDescription])
-      }
-      else {
-        setTitle(<p className="text-4xl font-zilla-slab-bold my-5">Go <span className="text-rose-400 text-5xl">F*ck</span> yourself.</p>)
-        const nextDescription = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
-        setDescription(prev => [...prev, nextDescription])
-      }
+
     }
     else {
       const temp = message;
