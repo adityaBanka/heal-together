@@ -72,7 +72,7 @@ function App() {
 
   const onSend = () => {
 
-    if (true) {
+    if (terms && privacy && eula) {
       if (message.length == 0) {
         setLoader("Enter your message..")
         return
