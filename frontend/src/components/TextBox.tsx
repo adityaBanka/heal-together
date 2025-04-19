@@ -16,7 +16,7 @@ const TextBox: React.FC<TextBoxProps> = ({ user, children }) => {
                 ) : null}
                 <AvatarFallback className="bg-rose-200 text-white">{user ? "U" : "Ai"}</AvatarFallback>
             </Avatar>
-            <TextEffect per="word" preset="scale" speedReveal={1} speedSegment={2} className="text-xl font-zilla-slab-regular text-justify">{String(children)}</TextEffect>
+            <TextEffect per="word" preset="scale" speedReveal={1} speedSegment={2} className={`text-xl font-zilla-slab-regular ${user? "text-end":"text-justify"}`}>{String(children)}</TextEffect>
             <div className="px-5"></div>
         </div>
     );
