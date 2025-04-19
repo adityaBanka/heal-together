@@ -213,7 +213,7 @@ function App() {
         <div className="flex flex-col ">
           <Title mode={title}></Title>
           <Description mode={description}></Description>
-          <div className={`bg-white/50 border border-rose-400 rounded-4xl p-10 mt-5 ${numberOfMessages > 0 ? "" : "hidden"}`}>
+          <div className={`bg-white/50 border border-rose-400 rounded-4xl p-5 md:p-10 mt-5 ${numberOfMessages > 0 ? "" : "hidden"}`}>
             {chat}
           </div>
         </div>
