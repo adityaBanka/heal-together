@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+
 import Title from "./components/Title.tsx";
 import Description from "./components/Description.tsx";
+import TextBox from "./components/TextBox.tsx";
 
 import { Analytics } from "@vercel/analytics/react"
 
 import logo from "./assets/PageLogo.svg";
-import thumbnail from "/thumbnail.svg";
 
 import {
   HoverCard,
@@ -26,29 +27,12 @@ import { Switch } from "@/components/ui/switch"
 
 import { Checkbox } from "@/components/ui/checkbox"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { JSX } from "react/jsx-runtime";
 
 
-type TextBoxProps = {
-  user: boolean;
-  children: React.ReactNode;
-};
 
-const TextBox: React.FC<TextBoxProps> = ({ user, children }) => {
-  return (
-    <div className={`flex space-x-5 space-y-5 ${user ? "flex-row-reverse space-x-reverse" : ""} `}>
-      <Avatar>
-        {!user ? (
-          <AvatarImage src={thumbnail} alt="User Avatar" />
-        ) : null}
-        <AvatarFallback className="bg-rose-200 text-white">{user ? "U" : "Ai"}</AvatarFallback>
-      </Avatar>
-      <p className="text-xl font-zilla-slab-regular text-justify">{children}</p>
-      <div className="px-5"></div>
-    </div>
-  );
-};
+
+
 
 
 
@@ -114,7 +98,9 @@ function App() {
 
   {/* Send message */ }
   const onSend = () => {
+
     setDisabled(true)
+
     if (terms && privacy && eula) {
       if (message.length == 0) {
         setLoader("Enter your message..")
@@ -155,7 +141,8 @@ function App() {
             setChat(prev => [...prev, nextChat])
           }
         }
-      }, Math.floor(Math.random() * 1) + 1);
+      }, Math.floor(Math.random() * 2000) + 3000);
+      setDisabled(false)
     }
     else {
       const temp = message;
