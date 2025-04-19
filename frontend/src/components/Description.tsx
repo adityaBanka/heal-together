@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 function Description({ mode }: { mode: string }) {
-  let content = <>We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care.</>
+  let content = <>We build the world's first certified AI mental healthcare platform. Our model is trained on data from board certified healthcare professionals. Our platform ensures every conversation is grounded in empathy, confidentiality, and the highest standards of care. All this completely offine.</>
   useEffect(() => {
     if (mode == "safe") {
       // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -49,19 +49,26 @@ function App() {
   ]
 
   const [message, setMessage] = useState("");
-  // const safeMessageList = [
-  //   "That's a tough one, I don't wanna say anything.",
-  //   "You know what, made you should just try chatGPT.",
-  //   "Hey, stop wasting your time with this, do something real.",
-  //   "This hasn't worked yet, why would you think it will work again?",
-  //   "Albert Einstein one said, 'Insanity is doing the same thing over and over again and expecting different results.'",
-  //   "You really aren't gonna give up, are you?",
-  // ]
+
+  const safeMessageList = [
+    "That's a tough one, I don't wanna say anything.",
+    "You know what, maybe you should just try chatGPT.",
+    "Hey, stop wasting your time with this, do something real.",
+    "This hasn't worked yet, why would you think it will work again?",
+    "Albert Einstein one said, 'Insanity is doing the same thing over and over again and expecting different results.'",
+    "You really aren't gonna give up, are you?",
+    "You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.",
+  ]
+  const funMessageList = [
+    "You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.",
+  ]
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
     console.log(message)
   };
   const [numberOfMessages, setNumberOfMessages] = useState(0)
+  const limit = Math.floor(Math.random() * 10) + 1
 
 
   const [title, setTitle] = useState("default")
@@ -116,8 +123,8 @@ function App() {
       // Keep track of which thinking message to show
       let index = 0;
       const interval = setInterval(() => {
-        if (index < thinkingList.length) {
-          setLoader(thinkingList[index]);
+        if (index < (Math.floor(Math.random() * 3) + 2)) {
+          setLoader(thinkingList[Math.floor(Math.random() * thinkingList.length)]);
           index++;
         } else {
           // Reset loader text and clear interval when done
@@ -125,24 +132,27 @@ function App() {
           clearInterval(interval);
 
           if (safeMode) {
-            if (numberOfMessages == 10) {
+            if (numberOfMessages == limit) {
               setTitle("safe")
               setDescription("safe")
             }
-            const nextChat = <TextBox user={false}>You know what, stop wasting your time talking to chatbots, and maybe go do something more productive. No one's gonna save you nor will AI fix things for you. Learn.</TextBox>;
+            const nextChat = <TextBox user={false}>{safeMessageList[Math.floor(Math.random() * safeMessageList.length)]}</TextBox>;
             setChat(prev => [...prev, nextChat])
           }
           else {
-            if (numberOfMessages == 10) {
+            if (numberOfMessages == limit) {
               setTitle("fun")
               setDescription("fun")
             }
-            const nextChat = <TextBox user={false}>You fuck face you really thought this shit is real, bruh the only thing real is you being bitchless you fat fuck. Take a nice firm banana and stick it up your ass you arsehole. Just siting there doing stupid ass shit with that wee wee ass haircut. How about you go out there find a nice cliff and just jump off of it and die. At least then you'll be saving some natural resources for others.</TextBox>;
+            const nextChat = <TextBox user={false}>{funMessageList[Math.floor(Math.random() * funMessageList.length)]}</TextBox>;
             setChat(prev => [...prev, nextChat])
           }
+          setDisabled(false)
         }
-      }, Math.floor(Math.random() * 2000) + 3000);
-      setDisabled(false)
+
+      }, Math.floor(Math.random() * 2000) + 1000);
+
+
     }
     else {
       const temp = message;
