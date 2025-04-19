@@ -1,8 +1,7 @@
 import thumbnail from "/thumbnail.svg";
 
-import { Avatar, AvatarFallback, AvatarImage } from "/src/components/ui/avatar"
-import { TextEffect } from '/components/motion-primitives/text-effect.tsx';
-
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { TextEffect } from './motion-primitives/text-effect';
 
 type TextBoxProps = {
     user: boolean;
