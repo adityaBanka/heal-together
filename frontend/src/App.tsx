@@ -123,7 +123,7 @@ function App() {
           clearInterval(interval);
 
           if (safeMode) {
-            if (numberOfMessages == limit) {
+            if (numberOfMessages >= limit) {
               setTitle("safe")
               setDescription("safe")
             }
@@ -131,7 +131,7 @@ function App() {
             setChat(prev => [...prev, nextChat])
           }
           else {
-            if (numberOfMessages == limit) {
+            if (numberOfMessages >= limit) {
               setTitle("fun")
               setDescription("fun")
             }
