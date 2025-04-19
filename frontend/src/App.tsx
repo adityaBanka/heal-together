@@ -30,12 +30,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { JSX } from "react/jsx-runtime";
 
 
-
-
-
-
-
-
 function App() {
 
   const [disabled, setDisabled] = useState(true)
@@ -75,10 +69,6 @@ function App() {
   const [description, setDescription] = useState("default")
   const [chat, setChat] = useState<JSX.Element[]>([])
 
-  // useEffect(() => {
-  //   setChat([])
-  // }, [])
-
   const [terms, setTerms] = useState(false)
   const [privacy, setPrivacy] = useState(false)
   const [eula, setEula] = useState(false)
@@ -98,6 +88,7 @@ function App() {
   const onToggleEula = (checked: boolean) => {
     setEula(checked)
   }
+
   const onToggleSafeMode = (checked: boolean) => {
     setSafeMode(checked)
   }
@@ -279,7 +270,7 @@ function App() {
             />
           </div>
           <div
-            className={`bg-white/50 flex items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${safeMode ? "outline-green-400" : "outline-rose-400"
+            className={`hidden bg-white/50  items-center justify-center outline p-2 rounded-full space-x-1 md:space-x-5 not-md:mt-5 ${safeMode ? "outline-green-400" : "outline-rose-400"
               }`}
           >
             <label className="text-sm font-zilla-slab-italic mx-1">Safe mode</label>
