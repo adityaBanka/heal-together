@@ -62,7 +62,7 @@ function App() {
     console.log(message)
   };
   const [numberOfMessages, setNumberOfMessages] = useState(0)
-  const limit = Math.floor(Math.random() * 10) + 1
+  const limit = Math.floor(Math.random() * 9) + 1;
 
 
   const [title, setTitle] = useState("default")
