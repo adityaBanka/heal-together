@@ -190,15 +190,26 @@ function App() {
   };
 
   const openIfClosed = (itemValue: string) => {
-    setAccordionValue((prev) => {
-      if (prev.includes(itemValue)) {
-        return prev; // already open, do nothing
-      }
-      return [...prev, itemValue]; // open it
-    });
-    setTimeout(() => {
-      refs[itemValue as keyof typeof refs]?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100); // delay matches accordion animation duration
+
+    let toggleValue = false;
+    if (itemValue === "item-1") {
+      toggleValue = terms;
+    }
+    else if (itemValue === "item-2") {
+      toggleValue = privacy;
+    }
+    else if (itemValue === "item-3") {
+      toggleValue = eula;
+    }
+
+    if (!toggleValue) {
+      setAccordionValue((prev) => [...prev, itemValue]);
+      // Only scroll if it was previously closed
+      setTimeout(() => {
+        refs[itemValue as keyof typeof refs]?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300); // wait for animation
+    }
+    // If already open, do nothing
   };
 
   return (
@@ -256,7 +267,7 @@ function App() {
           <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200 active:scale-95 hover:scale-105" onClick={onSend}>Send</button>
         </div>
 
-        <p className="md:mb-5 not-md:mt-5 font-zilla-slab-light-italic text-gray-700 text-sm">To accept, please read our TnC, PP, and EULA first.</p>  
+        <p className="md:mb-5 not-md:mt-5 font-zilla-slab-light-italic text-gray-700 text-sm">To accept, please read our TnC, PP, and EULA first.</p>
 
         {/* Condition buttons */}
         <div className="flex flex-col md:flex-row items-center justify-center w-full md:space-x-10">
