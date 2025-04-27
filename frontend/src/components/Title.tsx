@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 function Title({ mode }: { mode: string }) {
-  let content = <>Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together.</>
+  let content = <>Let's <span className="text-rose-400 text-5xl">Heal</span> our minds together and have fun.</>
   useEffect(() => {
     if (mode == "safe") {
       // eslint-disable-next-line react-hooks/exhaustive-deps
