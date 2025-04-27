@@ -256,7 +256,7 @@ function App() {
           <button className="p-4 rounded-full hover:bg-rose-400 hover:text-white font-zilla-slab-italic text-lg border border-rose-400 transition-all duration-200 active:scale-95 hover:scale-105" onClick={onSend}>Send</button>
         </div>
 
-        <p className="md:mb-5 not-md:mt-5 font-zilla-slab-light-italic text-gray-700 text-sm">To accept, please read our terms and conditions first.</p>  
+        <p className="md:mb-5 not-md:mt-5 font-zilla-slab-light-italic text-gray-700 text-sm">To accept, please read our TnC, PP, and EULA first.</p>  
 
         {/* Condition buttons */}
         <div className="flex flex-col md:flex-row items-center justify-center w-full md:space-x-10">
