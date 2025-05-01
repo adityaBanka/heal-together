@@ -113,6 +113,7 @@ function App() {
     if (terms && privacy && eula) {
       if (message.length == 0) {
         setLoader("Enter your message..")
+        setDisabled(false)
         return
       }
       const userChat = <TextBox user={true}>{message}</TextBox>;
